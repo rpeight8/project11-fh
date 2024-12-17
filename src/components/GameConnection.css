@@ -364,3 +364,123 @@
     opacity: 0.9;
   }
 }
+
+.question-image-container {
+  margin-bottom: 1rem;
+  max-width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.question-image {
+  max-width: 100%;
+  max-height: 300px;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+.image-zoom-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  cursor: pointer;
+}
+
+.zoomed-image {
+  max-width: 90vw;
+  max-height: 90vh;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+.question-image {
+  max-width: 100%;
+  max-height: 300px;
+  object-fit: contain;
+  border-radius: 8px;
+  transition: transform 0.2s ease;
+}
+
+.question-image:hover {
+  transform: scale(1.02);
+}
+
+/* Update button styles with explicit font colors */
+.connect-button,
+.start-game-button,
+.compute-results-button,
+.next-question-button,
+.finish-game-button {
+  color: #ffffff;
+  font-weight: 500;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+/* Add styles for any inputs */
+input {
+  color: #2c3e50;  /* Dark blue-grey that's readable on light backgrounds */
+}
+
+/* Update status values and labels */
+.status-label {
+  color: #4a5568;  /* Darker grey for labels */
+}
+
+.status-value {
+  color: #2d3748;  /* Even darker grey for values */
+}
+
+/* Update question and answer text colors */
+.question-text {
+  color: #1a202c;  /* Very dark grey, almost black */
+}
+
+.answer-text {
+  color: #2d3748;  /* Dark grey for answer text */
+}
+
+/* Update player name colors in circles to ensure contrast */
+.player-circle {
+  color: #ffffff;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+/* Error message color update */
+.error-message {
+  color: #e53e3e;  /* Bright red that's visible on light backgrounds */
+}
+
+/* Update heading colors */
+.players-list h3 {
+  color: #1a202c;  /* Very dark grey, almost black */
+  font-weight: 500;
+}
+
+/* Update game status text */
+.connection-status p {
+  color: #2d3748;  /* Dark grey */
+  font-weight: 500;
+}
+
+/* Update heading styles */
+.connection-status h2 {
+  color: #1a202c;  /* Very dark grey, almost black */
+}
+
+/* Status panel headings and text */
+.status-panel {
+  color: #2d3748;  /* Dark grey */
+}
+
+/* Make waiting status more visible */
+.game-state {
+  color: #2d3748;  /* Dark grey */
+  font-weight: 500;
+}

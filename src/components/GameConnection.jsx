@@ -14,6 +14,7 @@ export const GameConnection = () => {
     correctAnswer: null,
     resultsComputed: false,
   });
+  const [zoomedImage, setZoomedImage] = useState(null);
 
   const handleServerMessage = useCallback((data) => {
     switch (data.type) {
@@ -25,6 +26,14 @@ export const GameConnection = () => {
           resultsComputed: data.payload.game.resultsComputed,
         });
         setQuestion(data.payload.currentQuestion?.text || null);
+        if (data.payload.currentQuestion?.imageUrl) {
+          setQuestion({
+            text: data.payload.currentQuestion.text,
+            imageUrl: data.payload.currentQuestion.imageUrl,
+          });
+        } else {
+          setQuestion(data.payload.currentQuestion?.text || null);
+        }
         setPlayers(data.payload.players);
         setAnswers(data.payload.currentQuestion?.answers || []);
         setCorrectAnswer(data.payload.game.correctAnswer);
@@ -43,7 +52,7 @@ export const GameConnection = () => {
     setIsConnecting(true);
     setGameState('connecting');
 
-    const socket = new WebSocket('ws://localhost:1337');
+    const socket = new WebSocket('ws://89.110.123.46:1337/');
 
     socket.onopen = () => {
       console.log('Connected to server');
@@ -94,6 +103,14 @@ export const GameConnection = () => {
     if (ws) {
       ws.send(JSON.stringify({ type: 'FINISH_GAME' }));
     }
+  };
+
+  const handleImageClick = (imageUrl) => {
+    setZoomedImage(imageUrl);
+  };
+
+  const handleCloseZoom = () => {
+    setZoomedImage(null);
   };
 
   return (
@@ -157,7 +174,25 @@ export const GameConnection = () => {
         // Question Display Screen
         <div className="question-display">
           <div className="question-card">
-            <h3 className="question-text">{question}</h3>
+            {/* Update how the question is displayed */}
+            {typeof question === 'object' ? (
+              <>
+                {question.imageUrl && (
+                  <div className="question-image-container">
+                    <img
+                      src={question.imageUrl}
+                      alt="Question visual"
+                      className="question-image"
+                      onClick={() => handleImageClick(question.imageUrl)}
+                      style={{ cursor: 'zoom-in' }}
+                    />
+                  </div>
+                )}
+                <h3 className="question-text">{question.text}</h3>
+              </>
+            ) : (
+              <h3 className="question-text">{question}</h3>
+            )}
             <div className="answers-grid">
               {answers.map((answer) => (
                 <div
@@ -203,6 +238,11 @@ export const GameConnection = () => {
               </button>
             </div>
           </div>
+        </div>
+      )}
+      {zoomedImage && (
+        <div className="image-zoom-overlay" onClick={handleCloseZoom}>
+          <img src={zoomedImage} alt="Zoomed question visual" className="zoomed-image" />
         </div>
       )}
     </div>
