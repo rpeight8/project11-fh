@@ -1,0 +1,366 @@
+/* Reset and base styles */
+.game-connection {
+  width: 100%;
+  height: 100%;
+  padding: clamp(8px, 2vw, 16px);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #f0f2f5;
+  overflow-x: hidden;
+}
+
+/* Setup screen styles */
+.connection-status {
+  text-align: center;
+  margin-bottom: clamp(8px, 2vw, 16px);
+}
+
+.connection-status h2 {
+  font-size: clamp(18px, 3.5vw, 28px);
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.game-setup {
+  flex: 1;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(8px, 2vw, 16px);
+  max-height: calc(100vh - 100px);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 0 clamp(4px, 1vw, 8px);
+}
+
+.game-setup > * {
+  width: 100%;
+}
+
+.status-panel {
+  background-color: white;
+  border-radius: 8px;
+  padding: clamp(12px, 3vw, 20px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.status-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #eee;
+  font-size: clamp(12px, 2vw, 14px);
+}
+
+/* Players list styles */
+.players-list {
+  background-color: #f8f8f8;
+  padding: 20px;
+  border-radius: 8px;
+  flex: 1;
+  overflow-y: auto;
+}
+
+.players-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(40px, 1fr));
+  gap: clamp(8px, 2vw, 15px);
+  padding: clamp(8px, 2vw, 10px);
+}
+
+.player-circle {
+  aspect-ratio: 1;
+  width: 100%;
+  max-width: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  color: white;
+  font-size: clamp(10px, 1.5vw, 14px);
+}
+
+/* Question display styles */
+.question-display {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: clamp(8px, 2vw, 16px) 0;
+}
+
+.question-card {
+  width: 100%;
+  max-width: min(98vw, 800px);
+  background-color: white;
+  border-radius: 12px;
+  padding: clamp(12px, 2.5vw, 20px);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(10px, 2vw, 16px);
+  align-items: center;
+  margin: 0 auto;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.question-text {
+  font-size: clamp(16px, 3vw, 24px);
+  color: #333;
+  text-align: center;
+  line-height: 1.4;
+  padding: 0 clamp(8px, 2vw, 16px);
+}
+
+.answers-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(8px, 2vw, 16px);
+  width: 100%;
+}
+
+@media (min-width: 640px) {
+  .answers-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: clamp(12px, 2vw, 20px);
+  }
+}
+
+.answer-card {
+  background-color: #f8f9fa;
+  border: 2px solid #e9ecef;
+  border-radius: 8px;
+  padding: clamp(10px, 2vw, 16px);
+  font-size: clamp(14px, 2.5vw, 18px);
+  text-align: center;
+  min-height: 100px;
+  display: flex;
+  flex-direction: column;
+  touch-action: manipulation;
+}
+
+.answer-text {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(6px, 1.5vw, 12px);
+  min-height: 50px;
+  line-height: 1.3;
+}
+
+.answer-players {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  justify-content: center;
+  min-height: 35px;
+  padding: 6px;
+  border-top: 1px solid #e9ecef;
+  margin-top: auto;
+}
+
+.player-answer {
+  width: 22px;
+  height: 22px;
+  font-size: 9px;
+  transition: transform 0.2s ease;
+}
+
+.answer-players:empty {
+  position: relative;
+}
+
+.answer-players:empty::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background-color: #e9ecef;
+}
+
+/* Button styles */
+.connect-button,
+.start-game-button {
+  width: 100%;
+  max-width: 200px;
+  padding: clamp(8px, 2vw, 12px) clamp(16px, 3vw, 24px);
+  font-size: clamp(14px, 2vw, 16px);
+  border-radius: 4px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.start-game-button {
+  background-color: #2196f3;
+}
+
+.error-message {
+  color: #dc3545;
+  margin-top: 10px;
+  font-weight: 500;
+}
+
+.answer-card.correct-answer {
+  border-color: #4caf50;
+  background-color: #e8f5e9;
+}
+
+.answer-card.correct-answer .answer-text {
+  color: #2e7d32;
+  font-weight: 500;
+}
+
+.status-item .status-value {
+  font-weight: 500;
+}
+
+.status-item .status-value.connected {
+  color: #4caf50;
+}
+
+.player-circle[title]:hover::after {
+  content: attr(title);
+  position: absolute;
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  white-space: nowrap;
+  z-index: 10;
+  transform: translateY(30px);
+}
+
+.compute-results-button {
+  width: 100%;
+  max-width: 200px;
+  padding: clamp(8px, 2vw, 12px) clamp(16px, 3vw, 24px);
+  font-size: clamp(14px, 2vw, 16px);
+  border-radius: 4px;
+  background-color: #ff9800;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.compute-results-button:hover {
+  background-color: #f57c00;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+  padding: 0 clamp(4px, 1vw, 8px);
+}
+
+.compute-results-button,
+.next-question-button,
+.finish-game-button,
+.start-game-button,
+.connect-button {
+  min-width: 120px;
+  max-width: 180px;
+  padding: 10px 16px;
+  font-size: 14px;
+  border-radius: 6px;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.compute-results-button {
+  background-color: #ff9800;
+}
+
+.compute-results-button:hover {
+  background-color: #f57c00;
+}
+
+.next-question-button {
+  background-color: #2196f3;
+}
+
+.next-question-button:hover {
+  background-color: #1976d2;
+}
+
+.finish-game-button {
+  width: 100%;
+  max-width: 200px;
+  padding: clamp(8px, 2vw, 12px) clamp(16px, 3vw, 24px);
+  font-size: clamp(14px, 2vw, 16px);
+  border-radius: 4px;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  background-color: #dc3545;
+}
+
+.finish-game-button:hover {
+  background-color: #c82333;
+}
+
+/* Tooltip adjustments for touch devices */
+@media (hover: none) {
+  .player-circle[title]:active::after {
+    content: attr(title);
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-size: 14px;
+    white-space: nowrap;
+    z-index: 1000;
+  }
+}
+
+/* Touch device optimizations */
+@media (hover: none) {
+  .answer-card {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .player-circle[title]:active::after {
+    content: attr(title);
+    position: fixed;
+    bottom: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 14px;
+    white-space: nowrap;
+    z-index: 1000;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  .action-buttons button:active {
+    transform: scale(0.98);
+    opacity: 0.9;
+  }
+}
