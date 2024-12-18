@@ -3,7 +3,6 @@ import { useState, useCallback } from 'react';
 export const GameConnection = () => {
   const [ws, setWs] = useState(null);
   const [wsInstance, setWsInstance] = useState(null);
-  const [isConnecting, setIsConnecting] = useState(false);
   const [gameState, setGameState] = useState('idle');
   const [players, setPlayers] = useState([]);
   const [answers, setAnswers] = useState([]);
@@ -49,17 +48,14 @@ export const GameConnection = () => {
       setWsInstance(null);
     }
 
-    setIsConnecting(true);
     setGameState('connecting');
 
-    const socket = new WebSocket('ws://89.110.123.46:1337/');
-    // const socket = new WebSocket('ws://localhost:1337/');
+    const socket = new WebSocket('ws://localhost:1337/');
 
     socket.onopen = () => {
       console.log('Connected to server');
       setWs(socket);
       setWsInstance(socket);
-      setIsConnecting(false);
       setGameState('waiting');
     };
 
@@ -71,7 +67,6 @@ export const GameConnection = () => {
     socket.onclose = () => {
       console.log('Connection closed');
       setWs(null);
-      setIsConnecting(false);
       setGameState('error');
     };
 
@@ -116,16 +111,23 @@ export const GameConnection = () => {
 
   return (
     <div className="game-connection">
+      {/* Preload emojis */}
+      <div className="emoji-preload">🎯⏭️</div>
       {!question ? (
         // Setup/Waiting Screen
         <>
           <div className="connection-status">
             <p>Status: {gameState}</p>
-            {gameStatus.error && <p className="error-message">{gameStatus.error}</p>}
+            {gameState === 'error' && (
+              <div className="error-message">
+                <p>Oops! Something went wrong 😅</p>
+                <p>Please reload the app to try again</p>
+              </div>
+            )}
           </div>
 
           {gameState === 'idle' && (
-            <button onClick={connectWebSocket} disabled={isConnecting} className="connect-button">
+            <button onClick={connectWebSocket} className="connect-button">
               Start Host Server
             </button>
           )}

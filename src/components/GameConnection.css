@@ -205,9 +205,23 @@
 }
 
 .error-message {
-  color: #dc3545;
+  color: #e53e3e;
   margin-top: 10px;
   font-weight: 500;
+  text-align: center;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.error-message p {
+  margin: 8px 0;
+}
+
+.error-message p:first-child {
+  font-size: 18px;
+  font-weight: bold;
 }
 
 .answer-card.correct-answer {
@@ -525,4 +539,18 @@ input {
 
 .shake-animation {
   animation: shake 0.5s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+
+/* Preload emojis */
+.emoji-preload {
+  position: absolute;
+  top: -9999px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Ensure emoji rendering */
+button {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  font-display: block;
 }
