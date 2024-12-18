@@ -242,12 +242,12 @@
 }
 
 .compute-results-button {
+  background-color: #9c27b0;
   width: 100%;
   max-width: 200px;
   padding: clamp(8px, 2vw, 12px) clamp(16px, 3vw, 24px);
   font-size: clamp(14px, 2vw, 16px);
   border-radius: 4px;
-  background-color: #ff9800;
   color: white;
   border: none;
   cursor: pointer;
@@ -255,7 +255,7 @@
 }
 
 .compute-results-button:hover {
-  background-color: #f57c00;
+  background-color: #7b1fa2;
 }
 
 .action-buttons {
@@ -287,11 +287,11 @@
 }
 
 .compute-results-button {
-  background-color: #ff9800;
+  background-color: #9c27b0;
 }
 
 .compute-results-button:hover {
-  background-color: #f57c00;
+  background-color: #7b1fa2;
 }
 
 .next-question-button {
@@ -425,25 +425,25 @@
 
 /* Add styles for any inputs */
 input {
-  color: #2c3e50;  /* Dark blue-grey that's readable on light backgrounds */
+  color: #2c3e50; /* Dark blue-grey that's readable on light backgrounds */
 }
 
 /* Update status values and labels */
 .status-label {
-  color: #4a5568;  /* Darker grey for labels */
+  color: #4a5568; /* Darker grey for labels */
 }
 
 .status-value {
-  color: #2d3748;  /* Even darker grey for values */
+  color: #2d3748; /* Even darker grey for values */
 }
 
 /* Update question and answer text colors */
 .question-text {
-  color: #1a202c;  /* Very dark grey, almost black */
+  color: #1a202c; /* Very dark grey, almost black */
 }
 
 .answer-text {
-  color: #2d3748;  /* Dark grey for answer text */
+  color: #2d3748; /* Dark grey for answer text */
 }
 
 /* Update player name colors in circles to ensure contrast */
@@ -454,33 +454,75 @@ input {
 
 /* Error message color update */
 .error-message {
-  color: #e53e3e;  /* Bright red that's visible on light backgrounds */
+  color: #e53e3e; /* Bright red that's visible on light backgrounds */
 }
 
 /* Update heading colors */
 .players-list h3 {
-  color: #1a202c;  /* Very dark grey, almost black */
+  color: #1a202c; /* Very dark grey, almost black */
   font-weight: 500;
 }
 
 /* Update game status text */
 .connection-status p {
-  color: #2d3748;  /* Dark grey */
+  color: #2d3748; /* Dark grey */
   font-weight: 500;
 }
 
 /* Update heading styles */
 .connection-status h2 {
-  color: #1a202c;  /* Very dark grey, almost black */
+  color: #1a202c; /* Very dark grey, almost black */
 }
 
 /* Status panel headings and text */
 .status-panel {
-  color: #2d3748;  /* Dark grey */
+  color: #2d3748; /* Dark grey */
 }
 
 /* Make waiting status more visible */
 .game-state {
-  color: #2d3748;  /* Dark grey */
+  color: #2d3748; /* Dark grey */
   font-weight: 500;
+}
+
+/* Update mobile styles */
+@media (max-width: 480px) {
+  .action-buttons {
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .compute-results-button,
+  .next-question-button,
+  .finish-game-button {
+    width: 100%;
+    max-width: 280px;
+    padding: 12px 20px;
+    font-size: 16px;
+  }
+}
+
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
+    transform: translateX(-2px);
+  }
+  20%,
+  40%,
+  60%,
+  80% {
+    transform: translateX(2px);
+  }
+}
+
+.shake-animation {
+  animation: shake 0.5s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
 }

@@ -52,7 +52,8 @@ export const GameConnection = () => {
     setIsConnecting(true);
     setGameState('connecting');
 
-    const socket = new WebSocket('ws://89.110.123.46:1337/');
+    // const socket = new WebSocket('ws://89.110.123.46:1337/');
+    const socket = new WebSocket('ws://localhost:1337/');
 
     socket.onopen = () => {
       console.log('Connected to server');
@@ -119,7 +120,6 @@ export const GameConnection = () => {
         // Setup/Waiting Screen
         <>
           <div className="connection-status">
-            <h2>Host Control Panel</h2>
             <p>Status: {gameState}</p>
             {gameStatus.error && <p className="error-message">{gameStatus.error}</p>}
           </div>
@@ -225,16 +225,16 @@ export const GameConnection = () => {
             <div className="action-buttons">
               {!correctAnswer && (
                 <button onClick={handleComputeResults} className="compute-results-button">
-                  Compute Results
+                  🎯 Reveal Answer
                 </button>
               )}
               {correctAnswer && (
                 <button onClick={handleNextQuestion} className="next-question-button">
-                  Next Question
+                  ⏭️ Next One!
                 </button>
               )}
               <button onClick={handleFinishGame} className="finish-game-button">
-                Finish Game
+                Press if things go wrong!
               </button>
             </div>
           </div>

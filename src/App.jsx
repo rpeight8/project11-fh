@@ -5,7 +5,7 @@ import './App.css';
 function App() {
   return (
     <div className="App">
-      <h1>Game Room</h1>
+      <h1>🎮 Team Quiz Party!</h1>
       <GameConnection />
     </div>
   );
