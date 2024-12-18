@@ -52,8 +52,8 @@ export const GameConnection = () => {
     setIsConnecting(true);
     setGameState('connecting');
 
-    // const socket = new WebSocket('ws://89.110.123.46:1337/');
-    const socket = new WebSocket('ws://localhost:1337/');
+    const socket = new WebSocket('ws://89.110.123.46:1337/');
+    // const socket = new WebSocket('ws://localhost:1337/');
 
     socket.onopen = () => {
       console.log('Connected to server');
